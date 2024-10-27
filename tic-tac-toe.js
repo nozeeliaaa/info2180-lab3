@@ -1,25 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Select all divs inside the game board
     const squares = document.querySelectorAll("#board > div");
-    let isXturn = true; // Variable to track if it's X's turn
+    let isXturn = true;
 
-    // Loop through each square and add the 'square' class
     squares.forEach(square => {
         square.classList.add("square");
 
-        // Add click event listener for each square
+        // Add click event for placing X or O
         square.addEventListener("click", () => {
-            // Check if the square is already filled
             if (square.textContent === "") {
                 if (isXturn) {
                     square.textContent = "X";
-                    square.classList.add("X"); // Add class for styling
+                    square.classList.add("X");
                 } else {
                     square.textContent = "O";
-                    square.classList.add("O"); // Add class for styling
+                    square.classList.add("O");
                 }
-                isXturn = !isXturn; // Toggle turn
+                isXturn = !isXturn;
             }
+        });
+
+        // Add mouseenter event to add hover class
+        square.addEventListener("mouseenter", () => {
+            square.classList.add("hover");
+        });
+
+        // Add mouseleave event to remove hover class
+        square.addEventListener("mouseleave", () => {
+            square.classList.remove("hover");
         });
     });
 });
